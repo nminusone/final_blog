@@ -20,6 +20,8 @@ Bootstrap(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+#to run locally
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -69,7 +71,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# db.create_all()
+db.create_all()
 
 
 @app.route('/')
